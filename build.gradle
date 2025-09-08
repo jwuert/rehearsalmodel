@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'jacoco-report-aggregation'
+//    id 'com.github.spotbugs' version '4.8.0' apply true
+    id 'maven-publish'
+}
+
+group 'org.wuerthner.rehearsal'
+version '1.0.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'RehearsalModel',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'Jan Wuerthner',
+                'License': 'GNU GPL v3'
+        )
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri("https://maven.pkg.github.com/jwuert/sport")
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/jwuert/rehearsalmodel")
+
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId = rootProject.name
+            from components.java
+        }
+    }
+}
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation("org.wuerthner.sport:sport:2.0.0") {
+        changing = true
+    }
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
