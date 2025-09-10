@@ -1,4 +1,4 @@
-package org.wuerthner.rehearsalmodel;
+package org.wuerthner.rehearsalmodel.model;
 
 import org.wuerthner.sport.attribute.IdAttribute;
 import org.wuerthner.sport.core.AbstractModelElement;
@@ -15,5 +15,15 @@ public class Project extends AbstractModelElement {
 
     public Project() {
         super(TYPE, Arrays.asList(Appointment.TYPE), Arrays.asList(id));
+    }
+
+    @Override
+    public String getId() {
+        return this.getAttributeValue(id);
+    }
+
+    @Override
+    public String toString() {
+        return getId();
     }
 }

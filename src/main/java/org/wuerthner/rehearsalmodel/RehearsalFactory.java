@@ -1,6 +1,9 @@
 package org.wuerthner.rehearsalmodel;
 
-import org.wuerthner.action.RehearsalActionProvider;
+import org.wuerthner.rehearsalmodel.action.RehearsalActionProvider;
+import org.wuerthner.rehearsalmodel.model.Appointment;
+import org.wuerthner.rehearsalmodel.model.Model;
+import org.wuerthner.rehearsalmodel.model.Project;
 import org.wuerthner.sport.api.*;
 import org.wuerthner.sport.core.ModelClipboard;
 import org.wuerthner.sport.core.ModelHistory;
@@ -70,6 +73,6 @@ public class RehearsalFactory implements ModelElementFactory {
     public String getAppName() { return "Rehearsal"; }
 
     @Override
-    public String getFileExtension() { return ""; }
+    public String getFileExtension() { return "rhsl"; }
 
 }
