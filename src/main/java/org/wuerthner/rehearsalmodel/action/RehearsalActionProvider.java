@@ -1,4 +1,4 @@
-package org.wuerthner.action;
+package org.wuerthner.rehearsalmodel.action;
 
 import org.wuerthner.sport.action.*;
 import org.wuerthner.sport.api.Action;
