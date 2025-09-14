@@ -1,8 +1,11 @@
 package org.wuerthner.rehearsalmodel.model;
 
 import org.wuerthner.sport.attribute.IdAttribute;
+import org.wuerthner.sport.attribute.StaticListAttribute;
+import org.wuerthner.sport.attribute.StringAttribute;
 import org.wuerthner.sport.core.AbstractModelElement;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Model extends AbstractModelElement {
@@ -13,8 +16,12 @@ public class Model extends AbstractModelElement {
             .defaultValue("Model")
             .strictPattern(false);
 
+    public final static StringAttribute director = new StringAttribute("director")
+            .label("Chorleitung")
+            .required();
+
     public Model() {
-        super(TYPE, Arrays.asList(Project.TYPE), Arrays.asList(id));
+        super(TYPE, Arrays.asList(Project.TYPE, Location.TYPE), Arrays.asList(id, director));
     }
 
     @Override

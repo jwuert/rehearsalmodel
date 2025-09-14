@@ -1,6 +1,7 @@
 package org.wuerthner.rehearsalmodel.model;
 
 import org.wuerthner.sport.attribute.IdAttribute;
+import org.wuerthner.sport.attribute.StringAttribute;
 import org.wuerthner.sport.core.AbstractModelElement;
 
 import java.util.Arrays;

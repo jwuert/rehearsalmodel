@@ -1,10 +1,7 @@
 package org.wuerthner.rehearsalmodel;
 
 import org.wuerthner.rehearsalmodel.action.RehearsalActionProvider;
-import org.wuerthner.rehearsalmodel.model.Appointment;
-import org.wuerthner.rehearsalmodel.model.Cancellation;
-import org.wuerthner.rehearsalmodel.model.Model;
-import org.wuerthner.rehearsalmodel.model.Project;
+import org.wuerthner.rehearsalmodel.model.*;
 import org.wuerthner.sport.api.*;
 import org.wuerthner.sport.core.ModelClipboard;
 import org.wuerthner.sport.core.ModelHistory;
@@ -22,7 +19,7 @@ public class RehearsalFactory implements ModelElementFactory {
     private final static PdfViewerExecutor pdfViewerExecutor = new PdfViewerExecutor();
 
     public final static List<ModelElement> elementList = Arrays.asList(new ModelElement[]{
-            new Model(), new Project(), new Appointment(), new Cancellation()
+            new Model(), new Project(), new Appointment(), new Cancellation(), new Location()
     });
 
     @Override
@@ -40,6 +37,9 @@ public class RehearsalFactory implements ModelElementFactory {
                 break;
             case Cancellation.TYPE:
                 element = (T) new Cancellation();
+                break;
+            case Location.TYPE:
+                element = (T) new Location();
                 break;
             default:
                 throw new RuntimeException("Invalid element type: " + typeName);
