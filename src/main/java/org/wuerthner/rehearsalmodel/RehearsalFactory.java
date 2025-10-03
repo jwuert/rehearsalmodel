@@ -19,7 +19,7 @@ public class RehearsalFactory implements ModelElementFactory {
     private final static PdfViewerExecutor pdfViewerExecutor = new PdfViewerExecutor();
 
     public final static List<ModelElement> elementList = Arrays.asList(new ModelElement[]{
-            new Model(), new Project(), new Appointment(), new Cancellation(), new Location()
+            new Model(), new Project(), new Appointment(), new Cancellation(), new Location(), new Work(), new Voice()
     });
 
     @Override
@@ -40,6 +40,12 @@ public class RehearsalFactory implements ModelElementFactory {
                 break;
             case Location.TYPE:
                 element = (T) new Location();
+                break;
+            case Work.TYPE:
+                element = (T) new Work();
+                break;
+            case Voice.TYPE:
+                element = (T) new Voice();
                 break;
             default:
                 throw new RuntimeException("Invalid element type: " + typeName);

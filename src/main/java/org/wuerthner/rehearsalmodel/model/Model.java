@@ -21,7 +21,7 @@ public class Model extends AbstractModelElement {
             .required();
 
     public Model() {
-        super(TYPE, Arrays.asList(Project.TYPE, Location.TYPE), Arrays.asList(id, director));
+        super(TYPE, Arrays.asList(Project.TYPE, Location.TYPE, Work.TYPE), Arrays.asList(id, director));
     }
 
     @Override
