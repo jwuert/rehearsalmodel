@@ -33,6 +33,7 @@ public class Appointment extends AbstractModelElement {
             .addValue("Probe", "PROBE")
             .addValue("Generalprobe", "GENERAL")
             .addValue("Konzert", "KONZERT")
+            .addValue("Feier", "FEIER")
             .defaultValue("PROBE");
 
     public static final BooleanAttribute suppressCancellation = new BooleanAttribute("suppressCancellation")
