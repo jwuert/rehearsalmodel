@@ -39,9 +39,11 @@ public class Appointment extends AbstractModelElement {
     public static final BooleanAttribute suppressCancellation = new BooleanAttribute("suppressCancellation")
             .label("Absage verbieten");
 
+    public static final BooleanAttribute allowAcceptance = new BooleanAttribute("allowAcceptance")
+            .label("Zusage anbieten");
 
     public Appointment() {
-        super(TYPE, Arrays.asList(Cancellation.TYPE), Arrays.asList(date, time, location, message, type, suppressCancellation));
+        super(TYPE, Arrays.asList(Cancellation.TYPE), Arrays.asList(date, time, location, message, type, suppressCancellation, allowAcceptance));
     }
 
     @Override
