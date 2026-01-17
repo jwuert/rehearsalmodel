@@ -3,24 +3,19 @@ package org.wuerthner.rehearsalmodel;
 import org.wuerthner.rehearsalmodel.action.RehearsalActionProvider;
 import org.wuerthner.rehearsalmodel.model.*;
 import org.wuerthner.sport.api.*;
+import org.wuerthner.sport.attribute.StaticListAttribute;
 import org.wuerthner.sport.core.ModelClipboard;
 import org.wuerthner.sport.core.ModelHistory;
 import org.wuerthner.sport.util.PdfViewerExecutor;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class RehearsalFactory implements ModelElementFactory {
+public abstract class RehearsalFactory implements ModelElementFactory {
     private final static ActionProvider actionProvider = new RehearsalActionProvider();
     private final static History history = new ModelHistory();
     private final static Clipboard clipboard = new ModelClipboard();
     private final static PdfViewerExecutor pdfViewerExecutor = new PdfViewerExecutor();
-
-    public final static List<ModelElement> elementList = Arrays.asList(new ModelElement[]{
-            new Model(), new Project(), new Appointment(), new Cancellation(), new Location(), new Work(), new Voice()
-    });
 
     @Override
     public <T extends ModelElement> T createElement(String typeName) {
@@ -46,6 +41,7 @@ public class RehearsalFactory implements ModelElementFactory {
                 break;
             case Voice.TYPE:
                 element = (T) new Voice();
+                ((Voice)element).setUserMap(getUserMap());
                 break;
             default:
                 throw new RuntimeException("Invalid element type: " + typeName);
@@ -54,8 +50,12 @@ public class RehearsalFactory implements ModelElementFactory {
     }
 
     @Override
-    public List<ModelElement> createElementList() {
-        return elementList;
+    public List<ModelElement> createElementList(UserProvider userProvider) {
+        Voice voice = new Voice();
+        voice.setUserMap(userProvider.getUserMap());
+        return Arrays.asList(new ModelElement[]{
+            new Model(), new Project(), new Appointment(), new Cancellation(), new Location(), new Work(), voice
+        });
     }
 
     @Override

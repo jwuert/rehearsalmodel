@@ -28,4 +28,6 @@ public class Work  extends AbstractModelElement {
     public Work() {
         super(TYPE, Arrays.asList(Voice.TYPE), Arrays.asList(id, composer, project));
     }
+
+    public String getId() { return this.getAttributeValue(id); }
 }

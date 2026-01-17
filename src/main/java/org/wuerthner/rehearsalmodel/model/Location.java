@@ -33,4 +33,6 @@ public class Location extends AbstractModelElement {
     public Location() {
         super(TYPE, Arrays.asList(), Arrays.asList(id, name, address, plz, city));
     }
+
+    public String getId() { return this.getAttributeValue(id); }
 }

@@ -18,4 +18,6 @@ public class Cancellation extends AbstractModelElement {
     public Cancellation() {
         super(TYPE, Arrays.asList(), Arrays.asList(userid, acception));
     }
+
+    public String getId() { return this.getAttributeValue(userid); }
 }
