@@ -7,6 +7,7 @@ import org.wuerthner.sport.core.AbstractModelElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 public class Model extends AbstractModelElement {
     public final static String TYPE = "Model";
@@ -16,9 +17,12 @@ public class Model extends AbstractModelElement {
             .defaultValue("Model")
             .strictPattern(false);
 
-    public final static StringAttribute director = new StringAttribute("director")
-            .label("Chorleitung")
-            .required();
+//    public final static StringAttribute director = new StringAttribute("director")
+//            .label("Chorleitung")
+//            .required();
+
+    public final static StaticListAttribute<String> director = new StaticListAttribute<>("director", String.class)
+            .label("Administration");
 
     public Model() {
         super(TYPE, Arrays.asList(Project.TYPE, Location.TYPE, Work.TYPE), Arrays.asList(id, director));
@@ -32,5 +36,13 @@ public class Model extends AbstractModelElement {
     @Override
     public String toString() {
         return getId();
+    }
+
+    public void setUserMap(Map<String, String> userMap) {
+        if (director.getValueMap().isEmpty()) {
+            for (Map.Entry<String,String> entry : userMap.entrySet()) {
+                director.addValue(entry.getValue(), entry.getKey());
+            }
+        }
     }
 }

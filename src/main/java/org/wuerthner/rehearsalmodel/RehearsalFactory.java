@@ -23,6 +23,7 @@ public abstract class RehearsalFactory implements ModelElementFactory {
         switch (typeName) {
             case Model.TYPE:
                 element = (T) new Model();
+                ((Model)element).setUserMap(getUserMap());
                 break;
             case Project.TYPE:
                 element = (T) new Project();
@@ -51,10 +52,12 @@ public abstract class RehearsalFactory implements ModelElementFactory {
 
     @Override
     public List<ModelElement> createElementList(UserProvider userProvider) {
+        Model model = new Model();
+        model.setUserMap((userProvider.getUserMap()));
         Voice voice = new Voice();
         voice.setUserMap(userProvider.getUserMap());
         return Arrays.asList(new ModelElement[]{
-            new Model(), new Project(), new Appointment(), new Cancellation(), new Location(), new Work(), voice
+            model, new Project(), new Appointment(), new Cancellation(), new Location(), new Work(), voice
         });
     }
 

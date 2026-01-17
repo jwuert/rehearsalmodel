@@ -21,10 +21,6 @@ public class Voice  extends AbstractModelElement {
             .label("Kürzel")
             .required();
 
-//    public final static StringAttribute singers = new StringAttribute("singers")
-//            .label("Liste")
-//            .required();
-
     public final static StaticListAttribute<String> singerList = new StaticListAttribute<>("singerList", String.class)
             .label("Teinehmer");
 
