@@ -2,6 +2,7 @@ package org.wuerthner.rehearsalmodel.model;
 
 import org.wuerthner.rehearsalmodel.attribute.DateAttribute;
 import org.wuerthner.sport.attribute.*;
+import org.wuerthner.sport.check.IdAvailableCheck;
 import org.wuerthner.sport.check.True;
 import org.wuerthner.sport.core.AbstractModelElement;
 import org.wuerthner.sport.core.ElementFilter;
@@ -22,6 +23,8 @@ public class Appointment extends AbstractModelElement {
 
     public static final DynamicSelectableStringAttribute location = new DynamicSelectableStringAttribute("location")
             .label("Ort")
+            .required()
+            .addValidation(new IdAvailableCheck(Location.TYPE))
             .addFilter(new ElementFilter(Location.TYPE, new True()))
             ;
 
