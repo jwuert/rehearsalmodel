@@ -34,6 +34,7 @@ public class Appointment extends AbstractModelElement {
     public static final SelectableStringAttribute type = new SelectableStringAttribute("type")
             .label("Typ")
             .addValue("Probe", "PROBE")
+            .addValue("Probenwochenende", "PWE")
             .addValue("Generalprobe", "GENERAL")
             .addValue("Konzert", "KONZERT")
             .addValue("Feier", "FEIER")
