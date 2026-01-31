@@ -3,8 +3,7 @@ package org.wuerthner.rehearsalmodel.model;
 import org.wuerthner.rehearsalmodel.attribute.DateAttribute;
 import org.wuerthner.rehearsalmodel.attribute.ExtendedDateAttribute;
 import org.wuerthner.sport.attribute.*;
-import org.wuerthner.sport.check.IdAvailableCheck;
-import org.wuerthner.sport.check.True;
+import org.wuerthner.sport.check.*;
 import org.wuerthner.sport.core.AbstractModelElement;
 import org.wuerthner.sport.core.ElementFilter;
 
@@ -39,13 +38,18 @@ public class Appointment extends AbstractModelElement {
             .addValue("Generalprobe", "GENERAL")
             .addValue("Konzert", "KONZERT")
             .addValue("Feier", "FEIER")
+            .addValue("Entfällt", "ENTFAELLT")
             .defaultValue("PROBE");
 
     public static final BooleanAttribute suppressCancellation = new BooleanAttribute("suppressCancellation")
-            .label("Absage verbieten");
+            .label("Absage verbieten")
+            .addDependency(new Not(new AttributeEquality<>(type, "ENTFAELLT")));
 
     public static final BooleanAttribute allowAcceptance = new BooleanAttribute("allowAcceptance")
-            .label("Zusage anbieten");
+            .label("Zusage anbieten")
+            .addDependency(new Not(new AttributeEquality<>(type, "ENTFAELLT")))
+            .addDependency(new Not(new AttributeEquality<>(suppressCancellation, true)));
+
 
     public Appointment() {
         super(TYPE, Arrays.asList(Cancellation.TYPE), Arrays.asList(date, time, location, message, type, suppressCancellation, allowAcceptance));
