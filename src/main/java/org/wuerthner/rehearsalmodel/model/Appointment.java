@@ -1,6 +1,7 @@
 package org.wuerthner.rehearsalmodel.model;
 
 import org.wuerthner.rehearsalmodel.attribute.DateAttribute;
+import org.wuerthner.rehearsalmodel.attribute.ExtendedDateAttribute;
 import org.wuerthner.sport.attribute.*;
 import org.wuerthner.sport.check.IdAvailableCheck;
 import org.wuerthner.sport.check.True;
@@ -13,7 +14,7 @@ import java.util.Date;
 public class Appointment extends AbstractModelElement {
     public final static String TYPE = "Appointment";
 
-    public static final DateAttribute date = new DateAttribute("date")
+    public static final ExtendedDateAttribute date = new ExtendedDateAttribute("date")
             .label("Datum")
             .required();
 
